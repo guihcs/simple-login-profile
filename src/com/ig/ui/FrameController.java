@@ -1,8 +1,10 @@
 package com.ig.ui;
 
+import com.ig.main.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 
@@ -51,7 +53,6 @@ public class FrameController {
         }
         try {
             Node node = FXMLLoader.load(getClass().getResource(path));
-
             container.getChildren().add(node);
             AnchorPane.setTopAnchor(node, 20.0);
             AnchorPane.setLeftAnchor(node, 0.0);

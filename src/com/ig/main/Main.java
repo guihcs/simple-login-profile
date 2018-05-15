@@ -11,7 +11,10 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    public static final String MATERIAL_STYLE = Main.class.getResource("../material/style/MaterialStyle.css").toExternalForm();
+
     private static Stage primaryStage;
+
 
     @Override
     public void start(Stage primaryStage) {
@@ -19,7 +22,7 @@ public class Main extends Application {
         Main.primaryStage = primaryStage;
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../resources/layout_frame.fxml"));
-
+            root.getStylesheets().add(Main.MATERIAL_STYLE);
             Scene scene = new Scene(root, 300, 400);
             setScene(scene);
 
@@ -30,7 +33,7 @@ public class Main extends Application {
     }
 
     public static void setScene(Scene scene){
-        scene.getStylesheets().add(Main.class.getResource("../material/style/MaterialStyle.css").toExternalForm());
+
         primaryStage.setScene(scene);
 //        primaryStage.setX();
 //        primaryStage.setY();
