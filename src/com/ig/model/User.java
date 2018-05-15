@@ -19,9 +19,23 @@ public class User {
     //Adicionado para formatar o Date
     private SimpleDateFormat dateFormat;
 
+
+    public static User getFromData(String data){
+        User user = new User();
+        String[] dataPieces = data.split("#");
+        Image image = new Image(dataPieces[0]);
+
+        user.setImage(image);
+        user.setName(dataPieces[1]);
+        user.setCpf(dataPieces[2]);
+        //user.setStartDate(dataPieces[3]);
+        //user.setFinalDate(dataPieces[4]);
+        return user;
+    }
+
     //Construtor default
     public User() {
-
+        acessPages = new LinkedList<>();
     }
 
     //Construtor

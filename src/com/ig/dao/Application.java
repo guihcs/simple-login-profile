@@ -5,17 +5,14 @@ import com.ig.model.User;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Application {
 
     //Interface lista
-    private static List<User> bDUsers;
+    private static List<User> bDUsers = new ArrayList<>();
     private static User userDefault;
-    private static HashMap<String, javafx.scene.Node> nodeHashMap;
+    private static HashMap<String, javafx.scene.Node> nodeHashMap = new HashMap<>();
 
     //Construtor
     public Application ()
@@ -24,98 +21,79 @@ public class Application {
     }
 
     //Adicionar Usuários a lista
-    public boolean addUser(User user)
-    {
-        return (isContains(user)) ? bDUsers.add(user): false;
+    public static boolean addUser(User user){
+        if(!containsUser(user)){
+            bDUsers.add(user);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    public static void logout(){
+        if(userDefault != null) userDefault.setFinalDate(Calendar.getInstance().getTime());
     }
 
     //Retorna verdadeiro caso o cpf exista, validando o login do usuário.
     public static boolean login(String cpf)
     {
-        for (User user : bDUsers)
-        {
-            if(cpf.equals(user.getCpf()))
+        for (int i = 0; i < bDUsers.size(); i++) {
+            User user = bDUsers.get(i);
+            if(cpf.equals(user.getCpf())) {
                 userDefault = user;
-                return true;
+                userDefault.setStartDate(Calendar.getInstance().getTime());
+            }
+            return true;
         }
         return false;
     }
     //Retorna verdadeiro caso ja exista um usuário com esse CPF.
-    private static boolean isContains(User user) {
+    private static boolean containsUser(User user) {
 
-        for (User u : bDUsers)
-        {
-            if(u.getCpf().equals(user.getCpf()))
-                return true;
-        }
-        return false;
+        return bDUsers.contains(user);
+
     }
 
     //Adiciona o nome no usuário Default
-    public Node getNode(String name) {
+    public static Node getNode(String name) {
         userDefault.visitPagesAdd(name);
         return nodeHashMap.get(name);
     }
 
     //Salva todos os ddos no arquivo
-    public void datasSaved() {
+    public static void saveData(String basePath) {
 
-        File dir =  new File("C:\\Users\\Iarly Medeiros\\Documents\\Usuarios");
+        File dir =  new File(basePath);
         dir.mkdirs();
         //File names = new File("C:\\Users\\Iarly Medeiros\\Documents\\Acessos");
-
-        for (User u: bDUsers)
+        List<String> userData = new LinkedList<>();
+        for (User user: bDUsers)
         {
-            File arq = new File("C:\\Users\\Iarly Medeiros\\Documents\\Usuarios\\" + u.getCpf() + ".txt");
-
-            try
-            {
-                arq.createNewFile();
-                IOFiles.fileWriteAppend(arq,u.toString());
-                acessPagesSaved(u);
-
-            } catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+            saveAccessPages(basePath + "/UserAccess/", user);
+            userData.add(user.toString());
         }
+        IOFiles.fileWrite(basePath + "/UserFiles/Users.txt", userData);
 
     }
 
     //Salva a lista de acesso em um arquivo com nome dos usuários
-    private void acessPagesSaved(User user) {
-        File dir =  new File("C:\\Users\\Iarly Medeiros\\Documents\\Acessos");
-        dir.mkdirs();
+    private static void saveAccessPages(String basePath, User user) {
 
         List<String> list  = user.getAcessPages();
-
-        for (String acess:list) {
-            File arq = new File("C:\\Users\\Iarly Medeiros\\Documents\\Acessos\\" + user.getCpf() + ".txt");
-            try {
-                arq.createNewFile();
-                IOFiles.fileWriteAppend(arq,acess);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        String filePath = String.format("%s/%s.txt", basePath, user.getCpf());
+        IOFiles.fileWrite(filePath, list);
 
     }
 
     //Carrega todos os dados
-    public boolean loaderDatas(String userfile)
+    public static boolean loadData(String basePath, String userfile)
     {
-        User user;
-        List<String> userList =  IOFiles.fileReader(userfile);
 
-        for (int i = 0; i < userList.size() ; i++)
-        {
-            String uD[] = userList.get(i).split("#");
-            user = new User(new Image(uD[0]),uD[1],uD[2]);
+        List<String> userList =  IOFiles.fileReader(basePath + userfile);
 
-            for (String acess : IOFiles.fileReader("C:\\Users\\Iarly Medeiros\\Documents\\Acessos" + uD[2] + ".txt"))
-            {
-                user.getAcessPages().add(acess);
-            }
+        for (String userData : userList) {
+            User user = User.getFromData(userData);
+            bDUsers.add(user);
         }
         return true;
     }

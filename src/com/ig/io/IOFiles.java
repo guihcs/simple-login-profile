@@ -1,7 +1,10 @@
 package com.ig.io;
 
 import java.io.*;
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,33 +20,36 @@ public class IOFiles {
         }
     }
 
-    public static void fileWrite(String path, String data) {
+    public static void fileWrite(String path, List<String> lines) {
+
+        Path filePath = Paths.get(path);
 
         try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path));
-            bufferedWriter.write(data);
-            bufferedWriter.newLine();
+            Files.createDirectories(filePath.getParent());
+            PrintWriter printWriter = new PrintWriter(Files.newBufferedWriter(filePath));
+            for (String line : lines) {
+                printWriter.println(line);
+            }
+            printWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 
     public static List<String> fileReader(String path) {
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
-            List<String> userLines = new ArrayList<>();
-            String line;
-            while ((line = bufferedReader.readLine()).equals(null)){
-                userLines.add(line);
-            }
-            return userLines;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        Path filePath = Paths.get(path);
+
+        try {
+            if(Files.exists(filePath))
+                return Files.readAllLines(filePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+
+        return new LinkedList<>();
     }
 
 }

@@ -20,7 +20,8 @@ public class FrameController {
     @FXML
     private AnchorPane container;
 
-
+    public static final String LOGIN_LAYOUT_PATH = "../resources/layout_login.fxml";
+    public static final String SIGNUP_LAYOUT_PATH = "../resources/layout_signup.fxml";
 
     public void initialize(){
         loginToggle.fire();
@@ -33,7 +34,7 @@ public class FrameController {
         if(signupToggle.isSelected()){
             signupToggle.setSelected(false);
         }
-        setFragment("../resources/layout_login.fxml");
+        setFragment(LOGIN_LAYOUT_PATH);
 
 
     }
@@ -43,7 +44,7 @@ public class FrameController {
         if(loginToggle.isSelected()){
             loginToggle.setSelected(false);
         }
-        setFragment("../resources/layout_signup.fxml");
+        setFragment(SIGNUP_LAYOUT_PATH);
     }
 
 
