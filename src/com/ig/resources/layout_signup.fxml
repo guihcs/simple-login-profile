@@ -16,10 +16,10 @@
          <children>
             <StackPane layoutX="43.0" layoutY="-31.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Circle fx:id="imageView" fill="DODGERBLUE" radius="65.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                  <ImageView fitHeight="32.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="BOTTOM_CENTER">
+                  <Circle fx:id="imageView" fill="DODGERBLUE" onMouseClicked="#editImage" radius="65.0" stroke="BLACK" strokeType="INSIDE" StackPane.alignment="CENTER" />
+                  <ImageView fitHeight="32.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true" rotate="-56.3" StackPane.alignment="BOTTOM_CENTER">
                      <image>
-                        <Image url="@../../../../../../Pictures/say%20it%20inspiration/baseline-edit-white-18/2x/baseline_edit_white_18dp.png" />
+                        <Image url="@../material/icons/attach.png" />
                      </image>
                      <StackPane.margin>
                         <Insets bottom="10.0" left="50.0" />
@@ -39,7 +39,7 @@
             <Insets left="20.0" right="20.0" />
          </VBox.margin>
       </TextField>
-      <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#signup" styleClass="material-button-flat" text="SIGN UP">
+      <Button fx:id="flatButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#signup" styleClass="material-button-flat" text="SIGN UP">
          <VBox.margin>
             <Insets left="20.0" right="20.0" />
          </VBox.margin>

@@ -26,7 +26,8 @@ public class IOFiles {
 
         try {
             Files.createDirectories(filePath.getParent());
-            PrintWriter printWriter = new PrintWriter(Files.newBufferedWriter(filePath));
+            PrintWriter printWriter = new PrintWriter(Files.newBufferedWriter(filePath,
+                    StandardOpenOption.CREATE, StandardOpenOption.WRITE));
             for (String line : lines) {
                 printWriter.println(line);
             }

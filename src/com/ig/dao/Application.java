@@ -12,12 +12,25 @@ public class Application {
     //Interface lista
     private static List<User> bDUsers = new ArrayList<>();
     private static User userDefault;
-    private static HashMap<String, javafx.scene.Node> nodeHashMap = new HashMap<>();
+    private static Map<String, String> nodeHashMap;
 
+    static{
+        bDUsers =  new LinkedList<>();
+        nodeHashMap = Map.of("profile", "",
+                "aranha",
+               Application.class.getResource("../material/movies/Aranha.mp4").toExternalForm(),
+                "iron",
+                Application.class.getResource("../material/movies/Iron.mp4").toExternalForm(),
+                "minion",
+                Application.class.getResource("../material/movies/Minion.mp4").toExternalForm(),
+                "pixar",
+                Application.class.getResource("../material/movies/Pixar.mp4").toExternalForm());
+    }
     //Construtor
     public Application ()
     {
-        bDUsers =  new LinkedList<>();
+
+
     }
 
     //Adicionar Usuários a lista
@@ -55,8 +68,13 @@ public class Application {
 
     }
 
+    public static User getUserDefault(){
+        return userDefault;
+    }
+
+
     //Adiciona o nome no usuário Default
-    public static Node getNode(String name) {
+    public static String getMedia(String name) {
         userDefault.visitPagesAdd(name);
         return nodeHashMap.get(name);
     }
@@ -94,6 +112,8 @@ public class Application {
 
         for (String userData : userList) {
             User user = User.getFromData(userData);
+            List<String> accesses = IOFiles.fileReader(basePath + "/UserAccess/" + user.getCpf() + ".txt");
+            user.setAcessPages(accesses);
             bDUsers.add(user);
         }
         return true;

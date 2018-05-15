@@ -1,6 +1,7 @@
 package com.ig.ui;
 
 import com.ig.main.Main;
+import com.ig.material.view.RippleEffect;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -24,6 +25,7 @@ public class FrameController {
     public static final String SIGNUP_LAYOUT_PATH = "../resources/layout_signup.fxml";
 
     public void initialize(){
+
         loginToggle.fire();
         loginToggle.setSelected(true);
     }

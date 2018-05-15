@@ -107,11 +107,11 @@ public class User {
 
     public boolean visitPagesAdd(String name){
 
-        for (String visit: acessPages) {
-            if(!visit.equals(name))
-                return acessPages.add(name);
-        }
-        return false;
+        if(!acessPages.contains(name)){
+            acessPages.add(name);
+            return true;
+        }else
+            return false;
     }
 
     @Override
