@@ -1,0 +1,65 @@
+
+
+.root{
+    -primary-color: #22d8bd;
+
+}
+
+.fragment-containter {
+
+    -fx-background-color: #FFF;
+
+}
+
+.top-bar {
+    -fx-background-color: -primary-color;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 8,0.4,0,3 );
+}
+
+
+.material-button {
+
+    -fx-background-color: -primary-color;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 8,0.4,0,3 );
+    -fx-font-family: "Roboto Mono Medium";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+}
+
+
+.material-button:pressed {
+    
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 8,0.3,0,2 );
+
+}
+
+.material-button-toggle {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-font-family: "Roboto Mono Medium";
+    -fx-font-size: 16px;
+}
+
+.material-button-toggle:selected:focused {
+    -fx-background-color: -primary-color;
+    -fx-text-fill: white;
+}
+
+
+.material-text-field {
+
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: gray;
+
+}
+
+
+.material-text-field:focused {
+
+    -fx-border-color: -primary-color;
+
+}
+
+
+
