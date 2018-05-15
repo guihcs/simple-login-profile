@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class Main {
+public class Main extends Application{
 
 
     public static final String MATERIAL_STYLE = Main.class.getResource("../material/style/MaterialStyle.css").toExternalForm();
