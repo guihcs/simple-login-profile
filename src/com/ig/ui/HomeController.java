@@ -1,14 +1,23 @@
 package com.ig.ui;
 
+
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-import javafx.scene.web.WebView;
+import javafx.scene.control.Button;
 
 public class HomeController {
+
+    @FXML
+    private Button profileButton;
+    @FXML
+    private Button spiderButton;
+    @FXML
+    private Button ironButton;
+    @FXML
+    private Button minionButton;
+    @FXML
+    private Button pixarButton;
+    @FXML
+    private Button logoutButton;
 
     public void initialize(){
 

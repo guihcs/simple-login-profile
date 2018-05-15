@@ -3,7 +3,9 @@ package com.ig.model;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,7 +19,7 @@ public class User {
     private Date finalDate;
     private List<String> acessPages;
     //Adicionado para formatar o Date
-    private SimpleDateFormat dateFormat;
+    private static SimpleDateFormat dateFormat =  new SimpleDateFormat("dd/MM/yyyy");
 
 
     public static User getFromData(String data){
@@ -28,8 +30,16 @@ public class User {
         user.setImage(image);
         user.setName(dataPieces[1]);
         user.setCpf(dataPieces[2]);
-        //user.setStartDate(dataPieces[3]);
-        //user.setFinalDate(dataPieces[4]);
+        try {
+            Date startDate = !dataPieces[3].equals("none") ? dateFormat.parse(dataPieces[3]) : null;
+            Date finalDate = !dataPieces[4].equals("none") ? dateFormat.parse(dataPieces[4]) : null;
+
+
+            user.setStartDate( startDate);
+            user.setFinalDate(finalDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         return user;
     }
 
@@ -107,10 +117,10 @@ public class User {
     @Override
     public String toString() {
 
-        dateFormat =  new SimpleDateFormat("dd/MM/yyyy");
-        dateFormat.format(startDate);
+        String startDateText = startDate != null ? dateFormat.format(startDate) : "none";
+        String finalDateText = finalDate != null ? dateFormat.format(finalDate) : "none";
 
-        return String.format("%s#%s#%s#%s#%s",image.getUrl(),name,cpf,dateFormat.format(startDate),dateFormat.format(finalDate));
+        return String.format("%s#%s#%s#%s#%s",image.getUrl(),name,cpf,startDateText,finalDateText);
 
     }
 

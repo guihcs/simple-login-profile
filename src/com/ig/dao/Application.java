@@ -42,8 +42,9 @@ public class Application {
             if(cpf.equals(user.getCpf())) {
                 userDefault = user;
                 userDefault.setStartDate(Calendar.getInstance().getTime());
+                return true;
             }
-            return true;
+
         }
         return false;
     }

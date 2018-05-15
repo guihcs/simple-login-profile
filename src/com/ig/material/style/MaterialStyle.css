@@ -16,6 +16,16 @@
     -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 8,0.4,0,3 );
 }
 
+.material-label-bar{
+
+	-fx-background-color: -primary-color;
+	-fx-font-family: "Roboto Mono Medium";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-padding: 0 0 0 20px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 8,0.4,0,3 );
+}
+
 .material-button-flat {
 
     -fx-background-color: transparent;
@@ -28,7 +38,7 @@
 .material-button {
 
     -fx-background-color: -primary-color;
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 8,0.4,0,3 );
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 8,0.3,0,2 );
     -fx-font-family: "Roboto Mono Medium";
     -fx-font-size: 16px;
     -fx-text-fill: white;
@@ -37,7 +47,7 @@
 
 .material-button:pressed {
     
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 8,0.3,0,2 );
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.3) , 8,0.3,0,3 );
 
 }
 
