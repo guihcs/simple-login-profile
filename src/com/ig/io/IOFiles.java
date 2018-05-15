@@ -7,21 +7,21 @@ import java.util.List;
 
 public class IOFiles {
 
-    public static void fileWriteAppend(File file, String conteudo){
+    public static void fileWriteAppend(File path, String data) {
 
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file,true))){
-            bufferedWriter.write(conteudo);
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true))) {
+            bufferedWriter.write(data);
             bufferedWriter.newLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static void fileWrite(File file, String conteudo){
+    public static void fileWrite(String path, String data) {
 
         try {
-            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-            bufferedWriter.write(conteudo);
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path));
+            bufferedWriter.write(data);
             bufferedWriter.newLine();
         } catch (IOException e) {
             e.printStackTrace();
@@ -29,9 +29,9 @@ public class IOFiles {
     }
 
 
-    public static List<String> fileReader(File file){
+    public static List<String> fileReader(String path) {
 
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))){
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
             List<String> userLines = new ArrayList<>();
             String line;
             while ((line = bufferedReader.readLine()).equals(null)){
