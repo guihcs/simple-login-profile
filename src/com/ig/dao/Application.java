@@ -4,8 +4,6 @@ import com.ig.io.IOFiles;
 import com.ig.model.User;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
-
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -83,6 +81,7 @@ public class Application {
         }
 
     }
+
     //Salva a lista de acesso em um arquivo com nome dos usuários
     private void acessPagesSaved(User user) {
         File dir =  new File("C:\\Users\\Iarly Medeiros\\Documents\\Acessos");
